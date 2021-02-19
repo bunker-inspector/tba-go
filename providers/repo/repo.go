@@ -7,10 +7,6 @@ import (
 	rdb "github.com/bunker-inspector/tba/providers/repo/rocksdb"
 )
 
-const (
-	DEFAULT_STORAGE_DRIVER = "rocksdb"
-)
-
 func NewRepoFactory(c *cross.Config) *engine.RepoFactory {
 	driver := *c.Storage()
 
