@@ -12,3 +12,11 @@ type Character struct {
 	Wisdom       uint8
 	Charisma     uint8
 }
+
+func NewCharacter(name string) Character {
+	return Character{
+		Name:  name,
+		Level: 1,
+		Exp:   0,
+	}
+}

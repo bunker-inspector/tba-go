@@ -9,8 +9,9 @@ type RepoFactory interface {
 }
 
 type CharacterRepo interface {
-	Get(*domain.Character) *domain.Character
-	Put(*domain.Character)
+	DeleteByPlayerID(int)
+	GetByPlayerID(int) *domain.Character
+	Put(int, *domain.Character)
 }
 
 var factory *RepoFactory
