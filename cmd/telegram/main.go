@@ -24,5 +24,7 @@ func main() {
 
 	e := engine.NewEngine(rf)
 
-	telegram.NewGame(token, e, 10*time.Second).Start()
+	b := telegram.NewGame(token, e, 10*time.Second)
+	defer b.Stop()
+	b.Start()
 }
