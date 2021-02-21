@@ -2,43 +2,36 @@ package telegram
 
 import (
 	"fmt"
-	"log"
-	"strings"
 	"github.com/bunker-inspector/tba/domain"
 	"github.com/bunker-inspector/tba/engine"
 	tb "gopkg.in/tucnak/telebot.v2"
+	"log"
+	"strings"
 )
 
-func handleCharacterCommand(b *tb.Bot) func(*tb.Message) {
-	return func (m *tb.Message) {
+func handleCharacterCommand(b *tb.Bot, e *engine.Engine) func(*tb.Message) {
+	return func(m *tb.Message) {
 		subcommands := strings.Fields(m.Text)[1:]
 
 		if subcommands[0] == "delete" {
-			deleteOwnCharacter(b, m)
+			deleteOwnCharacter(b, m, e)
 		} else if subcommands[0] == "new" {
-			newCharacter(b, m)
+			newCharacter(b, m, e)
 		} else if subcommands[0] == "me" {
-			showOwnCharacter(b, m)
+			showOwnCharacter(b, m, e)
 		} else {
 			help(b, m)
 		}
 	}
 }
 
-func getCharacterRepo() engine.CharacterRepo {
-	return (*engine.GetRepoFactory()).GetCharacterRepo()
-}
-
-func deleteOwnCharacter(b *tb.Bot, m *tb.Message) {
-	repo := getCharacterRepo()
-	repo.DeleteByPlayerID(m.Sender.ID)
+func deleteOwnCharacter(b *tb.Bot, m *tb.Message, e *engine.Engine) {
+	e.DeleteCharacterByUserID(m.Sender.ID)
 	b.Send(m.Chat, "You character slot is empty.")
 }
 
-func newCharacter(b *tb.Bot, m *tb.Message) {
-	repo := getCharacterRepo()
-
-	if c := repo.GetByPlayerID(m.Sender.ID); c != nil {
+func newCharacter(b *tb.Bot, m *tb.Message, e *engine.Engine) {
+	if c := e.GetCharacterByUserID(m.Sender.ID); c != nil {
 		msg := "You have an existing character: %s\n" +
 			"Please delete this character before creating a new one.\n" +
 			"'/character delete'"
@@ -49,19 +42,18 @@ func newCharacter(b *tb.Bot, m *tb.Message) {
 	name := strings.Join(strings.Fields(m.Text)[2:], " ")
 	log.Printf("name: %+v\n", name)
 
-	character := domain.NewCharacter(name)
-	repo.Put(m.Sender.ID, &character)
+	character := domain.BaseCharacter(name)
+	e.NewCharacter(m.Sender.ID, &character)
 
 	b.Send(m.Chat, fmt.Sprintf("Welcome, O Brave %s", name))
 }
 
-func showOwnCharacter(b *tb.Bot, m *tb.Message) {
-	repo := getCharacterRepo()
-	character := repo.GetByPlayerID(m.Sender.ID)
+func showOwnCharacter(b *tb.Bot, m *tb.Message, e *engine.Engine) {
+	character := e.GetCharacterByUserID(m.Sender.ID)
 
 	if character == nil {
 		msg := "You have not created a character.\n" +
-		"You can make one with 'character new [name]'\n"
+			"You can make one with 'character new [name]'\n"
 
 		b.Send(m.Chat, msg)
 	} else {

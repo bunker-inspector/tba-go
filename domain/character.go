@@ -13,7 +13,7 @@ type Character struct {
 	Charisma     uint8
 }
 
-func NewCharacter(name string) Character {
+func BaseCharacter(name string) Character {
 	return Character{
 		Name:  name,
 		Level: 1,

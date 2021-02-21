@@ -1,10 +1,10 @@
 package repo
 
 import (
-	"log"
 	"github.com/bunker-inspector/tba/cross"
 	"github.com/bunker-inspector/tba/engine"
 	rdb "github.com/bunker-inspector/tba/providers/repo/rocksdb"
+	"log"
 )
 
 func NewRepoFactory(c *cross.Config) *engine.RepoFactory {

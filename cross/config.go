@@ -1,9 +1,9 @@
 package cross
 
 import (
+	dotenv "github.com/joho/godotenv"
 	"log"
 	"os"
-	dotenv "github.com/joho/godotenv"
 )
 
 type Config struct {

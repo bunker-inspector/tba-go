@@ -4,22 +4,22 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
-	"log"
 	rdb "github.com/bunker-inspector/gorocksdb"
 	"github.com/bunker-inspector/tba/domain"
+	"log"
 )
 
 type characterRepo struct {
-	DB      *rdb.DB
-	RO      *rdb.ReadOptions
-	WO      *rdb.WriteOptions
+	DB *rdb.DB
+	RO *rdb.ReadOptions
+	WO *rdb.WriteOptions
 }
 
 func key(id int) []byte {
 	return []byte(fmt.Sprintf("character-%d", id))
 }
 
-func (r characterRepo) GetByPlayerID(id int) *domain.Character {
+func (r characterRepo) GetByUserID(id int) *domain.Character {
 	key := key(id)
 
 	data, err := r.DB.GetBytes(r.RO, []byte(key))
@@ -39,11 +39,10 @@ func (r characterRepo) GetByPlayerID(id int) *domain.Character {
 	return &c
 }
 
-func (r characterRepo) DeleteByPlayerID(id int) {
+func (r characterRepo) DeleteByUserID(id int) {
 	key := key(id)
 	r.DB.Delete(r.WO, key)
 }
-
 
 func (r characterRepo) Put(id int, c *domain.Character) {
 	key := key(id)

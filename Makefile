@@ -10,6 +10,12 @@ PLATFORM := telegram
 setup:
 	go mod download
 
+fmt:
+	go fmt $$(go list ./... | grep -v vendor)
+
+lint:
+	golint $$(go list ./... | grep -v vendor)
+
 build_telegram:
 	CGO_FLAGS=$(CGO_CFLAGS) CGO_LDFLAGS=$(CGO_LDFLAGS) GOOS=linux GOARCH=amd64 go build -ldflags "$(LDFLAGS)" -o bin/telegram cmd/telegram/*.go
 

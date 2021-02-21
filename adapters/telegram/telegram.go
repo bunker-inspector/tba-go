@@ -2,15 +2,15 @@ package telegram
 
 import (
 	// "fmt"
+	"github.com/bunker-inspector/tba/engine"
+	tb "gopkg.in/tucnak/telebot.v2"
 	"log"
 	"time"
-
-	tb "gopkg.in/tucnak/telebot.v2"
 )
 
-func NewGame(token string, timeout time.Duration) *tb.Bot {
+func NewGame(token string, e *engine.Engine, timeout time.Duration) *tb.Bot {
 	b, err := tb.NewBot(tb.Settings{
-		Token: token ,
+		Token:  token,
 		Poller: &tb.LongPoller{Timeout: timeout},
 	})
 
@@ -18,7 +18,7 @@ func NewGame(token string, timeout time.Duration) *tb.Bot {
 		log.Fatal(err)
 	}
 
-	b.Handle("/character", handleCharacterCommand(b))
+	b.Handle("/character", handleCharacterCommand(b, e))
 
 	return b
 }

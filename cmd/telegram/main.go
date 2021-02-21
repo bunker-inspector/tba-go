@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
-	"time"
 	"os"
+	"time"
 
 	"github.com/bunker-inspector/tba/adapters/telegram"
 	"github.com/bunker-inspector/tba/cross"
@@ -22,7 +22,7 @@ func main() {
 
 	rf := repo.NewRepoFactory(config)
 
-	engine.SetRepoFactory(rf)
+	e := engine.NewEngine(rf)
 
-	telegram.NewGame(token, 10 * time.Second).Start()
+	telegram.NewGame(token, e, 10*time.Second).Start()
 }
