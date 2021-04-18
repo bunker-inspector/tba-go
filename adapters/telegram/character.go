@@ -31,7 +31,7 @@ func deleteOwnCharacter(b *tb.Bot, m *tb.Message, e *engine.Engine) {
 }
 
 func buildCharacterCreationUI(c *domain.Character, uid int, points int, b *tb.Bot, e *engine.Engine) (string, *tb.ReplyMarkup) {
-	tagFn := func (btnId string) string {
+	tagFn := func(btnId string) string {
 		return fmt.Sprintf("cc%s%d", btnId, uid)
 	}
 
@@ -170,7 +170,7 @@ func buildCharacterCreationUI(c *domain.Character, uid int, points int, b *tb.Bo
 		b.Edit(cb.Message, fmt.Sprintf("Welcome, O Brave %s", c.Name))
 
 		// Were done, ship it
-		e.NewCharacter(uid, c)
+		e.NewCharacter(c)
 	})
 
 	msg := "Name: %s\n" +
@@ -207,7 +207,7 @@ func newCharacter(b *tb.Bot, m *tb.Message, e *engine.Engine) {
 	name := strings.Join(strings.Fields(m.Text)[2:], " ")
 	log.Printf("name: %s\n", name)
 
-	c := domain.BaseCharacter(name)
+	c := domain.BaseCharacter(m.Sender.ID, name)
 
 	label, ui := buildCharacterCreationUI(&c, m.Sender.ID, 6, b, e)
 

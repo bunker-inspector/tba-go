@@ -3,19 +3,17 @@ package repo
 import (
 	"github.com/bunker-inspector/tba/cross"
 	"github.com/bunker-inspector/tba/engine"
-	rdb "github.com/bunker-inspector/tba/providers/repo/rocksdb"
+	sqlite "github.com/bunker-inspector/tba/providers/repo/sqlite"
 	"log"
 )
 
 func NewRepoFactory(c *cross.Config) *engine.RepoFactory {
 	driver := *c.Storage()
-
 	var factory engine.RepoFactory
-	if driver == "rocksdb" {
-		factory = rdb.NewRocksDBRepoFactory()
+	if driver == "sqlite" {
+		factory = sqlite.NewSQLiteRepoFactory()
 		return &factory
 	}
-
-	log.Fatal("STORAGE_DRIVER must be one of: rocksdb")
+	log.Fatal("STORAGE_DRIVER must be one of: sqlite")
 	return nil
 }

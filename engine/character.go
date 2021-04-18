@@ -4,8 +4,8 @@ import (
 	"github.com/bunker-inspector/tba/domain"
 )
 
-func (e *Engine) NewCharacter(id int, c *domain.Character) {
-	e.GetCharacterRepo().Put(id, c)
+func (e *Engine) NewCharacter(c *domain.Character) {
+	e.GetCharacterRepo().Put(c)
 }
 
 func (e *Engine) DeleteCharacterByUserID(id int) {
