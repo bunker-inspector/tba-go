@@ -1,7 +1,7 @@
 package domain
 
 const (
-	ABILITY_MIN = 8
+	ABILITY_MIN      = 8
 	ABILITY_INIT_MAX = 14
 )
 
@@ -9,6 +9,8 @@ type Character struct {
 	Name  string
 	Level uint8
 	Exp   uint16
+
+	UserID int
 
 	Str uint8
 	Con uint8
@@ -18,11 +20,13 @@ type Character struct {
 	Cha uint8
 }
 
-func BaseCharacter(name string) Character {
+func BaseCharacter(userid int, name string) Character {
 	return Character{
 		Name:  name,
 		Level: 1,
 		Exp:   0,
+
+		UserID: userid,
 
 		Str: 10,
 		Con: 10,

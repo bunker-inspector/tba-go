@@ -13,12 +13,9 @@ func NewGame(token string, e *engine.Engine, timeout time.Duration) *tb.Bot {
 		Token:  token,
 		Poller: &tb.LongPoller{Timeout: timeout},
 	})
-
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	b.Handle("/character", handleCharacterCommand(b, e))
-
 	return b
 }

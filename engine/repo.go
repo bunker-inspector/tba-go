@@ -11,5 +11,5 @@ type RepoFactory interface {
 type CharacterRepo interface {
 	DeleteByUserID(int)
 	GetByUserID(int) *domain.Character
-	Put(int, *domain.Character)
+	Put(*domain.Character)
 }

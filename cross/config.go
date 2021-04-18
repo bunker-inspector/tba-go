@@ -20,7 +20,7 @@ func InitConfig() {
 
 	storage := os.Getenv("STORAGE_DRIVER")
 	if storage == "" {
-		storage = "rocksdb"
+		storage = "sqlite"
 	}
 
 	conf = &Config{
