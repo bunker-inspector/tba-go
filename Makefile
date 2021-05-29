@@ -9,6 +9,7 @@ PLATFORM := telegram
 # Setup
 setup:
 	go mod download
+	go get -u github.com/pressly/goose/cmd/goose
 
 fmt:
 	go fmt $$(go list ./... | grep -v vendor)
@@ -16,10 +17,13 @@ fmt:
 lint:
 	golint $$(go list ./... | grep -v vendor)
 
+migrate:
+	goose -dir db sqlite3 ./tba.db up
+
 build_telegram:
 	CGO_FLAGS=$(CGO_CFLAGS) CGO_LDFLAGS=$(CGO_LDFLAGS) GOOS=linux GOARCH=amd64 go build -ldflags "$(LDFLAGS)" -o bin/telegram cmd/telegram/*.go
 
 build: build_telegram
 
-run:
+run: migrate
 	go run $$(ls -1 cmd/$(PLATFORM)/*.go | grep -v _test.go)

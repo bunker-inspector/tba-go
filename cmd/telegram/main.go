@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/bunker-inspector/tba/adapters/telegram"
-	"github.com/bunker-inspector/tba/cross"
+	"github.com/bunker-inspector/tba/config"
 	"github.com/bunker-inspector/tba/engine"
 	"github.com/bunker-inspector/tba/providers/repo"
 )
@@ -16,14 +16,10 @@ func main() {
 	if token == "" {
 		log.Fatal("TELEGRAM_BOT_TOKEN not set.")
 	}
-
-	cross.InitConfig()
-	config := cross.GetConfig()
-
-	rf := repo.NewRepoFactory(config)
-
+	config.InitConfig()
+	c := config.GetConfig()
+	rf := repo.NewRepoFactory(c)
 	e := engine.NewEngine(rf)
-
 	b := telegram.NewGame(token, e, 10*time.Second)
 	defer b.Stop()
 	b.Start()

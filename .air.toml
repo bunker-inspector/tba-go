@@ -7,17 +7,13 @@ tmp_dir = "tmp"
 
 [build]
 # Just plain old shell command. You could use `make` as well.
-cmd = "make build_telegram"
-# Binary file yields from `cmd`.
-bin = "./bin/telegram"
-# Customize binary.
-#full_bin = "APP_ENV=dev APP_USER=air ./tmp/main"
+cmd = "make run"
 # Watch these filename extensions.
 include_ext = ["go", "tpl", "tmpl", "html"]
 # Ignore these filename extensions or directories.
 exclude_dir = ["assets", "tmp", "vendor"]
 # Watch these directories if you specified.
-include_dir = ["cmd", "cross", "domain", "engine", "providers"]
+include_dir = ["cmd", "cross", "db", "domain", "engine", "providers"]
 # Exclude files.
 exclude_file = []
 # Exclude unchanged files.

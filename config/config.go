@@ -1,9 +1,10 @@
-package cross
+package config
 
 import (
-	dotenv "github.com/joho/godotenv"
 	"log"
 	"os"
+
+	dotenv "github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -17,12 +18,10 @@ func InitConfig() {
 	if err != nil {
 		log.Print("No .env file found.")
 	}
-
 	storage := os.Getenv("STORAGE_DRIVER")
 	if storage == "" {
 		storage = "sqlite"
 	}
-
 	conf = &Config{
 		storage: storage,
 	}
