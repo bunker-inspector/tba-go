@@ -1,8 +1,8 @@
 package domain
 
 const (
-	ABILITY_MIN      = 8
-	ABILITY_INIT_MAX = 14
+	CharacterAbilityMin     = 8
+	CharacterAbilityInitMax = 14
 )
 
 type Character struct {

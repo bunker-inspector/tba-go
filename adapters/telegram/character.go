@@ -57,46 +57,46 @@ func buildCharacterCreationUI(c *domain.Character, uid int, points int, b *tb.Bo
 
 		rows []tb.Row
 	)
-	if c.Str > domain.ABILITY_MIN && c.Str < domain.ABILITY_INIT_MAX && points > 0 {
+	if c.Str > domain.CharacterAbilityMin && c.Str < domain.CharacterAbilityInitMax && points > 0 {
 		rows = append(rows, ui.Row(strDn, strUp))
-	} else if c.Str == domain.ABILITY_INIT_MAX || points == 0 {
+	} else if c.Str == domain.CharacterAbilityInitMax || points == 0 {
 		rows = append(rows, ui.Row(strDn))
-	} else if c.Str == domain.ABILITY_MIN && points > 0 {
+	} else if c.Str == domain.CharacterAbilityMin && points > 0 {
 		rows = append(rows, ui.Row(strUp))
 	}
-	if c.Con > domain.ABILITY_MIN && c.Con < domain.ABILITY_INIT_MAX && points > 0 {
+	if c.Con > domain.CharacterAbilityMin && c.Con < domain.CharacterAbilityInitMax && points > 0 {
 		rows = append(rows, ui.Row(conDn, conUp))
-	} else if c.Con == domain.ABILITY_INIT_MAX || points == 0 {
+	} else if c.Con == domain.CharacterAbilityInitMax || points == 0 {
 		rows = append(rows, ui.Row(conDn))
-	} else if c.Con == domain.ABILITY_MIN && points > 0 {
+	} else if c.Con == domain.CharacterAbilityMin && points > 0 {
 		rows = append(rows, ui.Row(conUp))
 	}
-	if c.Dex > domain.ABILITY_MIN && c.Dex < domain.ABILITY_INIT_MAX && points > 0 {
+	if c.Dex > domain.CharacterAbilityMin && c.Dex < domain.CharacterAbilityInitMax && points > 0 {
 		rows = append(rows, ui.Row(dexDn, dexUp))
-	} else if c.Dex == domain.ABILITY_INIT_MAX || points == 0 {
+	} else if c.Dex == domain.CharacterAbilityInitMax || points == 0 {
 		rows = append(rows, ui.Row(dexDn))
-	} else if c.Dex == domain.ABILITY_MIN && points > 0 {
+	} else if c.Dex == domain.CharacterAbilityMin && points > 0 {
 		rows = append(rows, ui.Row(dexUp))
 	}
-	if c.Int > domain.ABILITY_MIN && c.Int < domain.ABILITY_INIT_MAX && points > 0 {
+	if c.Int > domain.CharacterAbilityMin && c.Int < domain.CharacterAbilityInitMax && points > 0 {
 		rows = append(rows, ui.Row(intDn, intUp))
-	} else if c.Int == domain.ABILITY_INIT_MAX || points == 0 {
+	} else if c.Int == domain.CharacterAbilityInitMax || points == 0 {
 		rows = append(rows, ui.Row(intDn))
-	} else if c.Int == domain.ABILITY_MIN && points > 0 {
+	} else if c.Int == domain.CharacterAbilityMin && points > 0 {
 		rows = append(rows, ui.Row(intUp))
 	}
-	if c.Wis > domain.ABILITY_MIN && c.Wis < domain.ABILITY_INIT_MAX && points > 0 {
+	if c.Wis > domain.CharacterAbilityMin && c.Wis < domain.CharacterAbilityInitMax && points > 0 {
 		rows = append(rows, ui.Row(wisDn, wisUp))
-	} else if c.Wis == domain.ABILITY_INIT_MAX || points == 0 {
+	} else if c.Wis == domain.CharacterAbilityInitMax || points == 0 {
 		rows = append(rows, ui.Row(wisDn))
-	} else if c.Wis == domain.ABILITY_MIN && points > 0 {
+	} else if c.Wis == domain.CharacterAbilityMin && points > 0 {
 		rows = append(rows, ui.Row(wisUp))
 	}
-	if c.Cha > domain.ABILITY_MIN && c.Cha < domain.ABILITY_INIT_MAX && points > 0 {
+	if c.Cha > domain.CharacterAbilityMin && c.Cha < domain.CharacterAbilityInitMax && points > 0 {
 		rows = append(rows, ui.Row(chaDn, chaUp))
-	} else if c.Cha == domain.ABILITY_INIT_MAX || points == 0 {
+	} else if c.Cha == domain.CharacterAbilityInitMax || points == 0 {
 		rows = append(rows, ui.Row(chaDn))
-	} else if c.Cha == domain.ABILITY_MIN && points > 0 {
+	} else if c.Cha == domain.CharacterAbilityMin && points > 0 {
 		rows = append(rows, ui.Row(chaUp))
 	}
 	if points == 0 {

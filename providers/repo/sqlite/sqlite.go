@@ -8,18 +8,15 @@ import (
 	"log"
 )
 
-type sqliteRepoFactory struct {
-	DB *gorm.DB
+type repo struct {
+	*gorm.DB
 }
 
-func NewSQLiteRepoFactory() engine.RepoFactory {
+func NewSQLiteRepo() engine.Repo {
 	db, err := gorm.Open(sqlite.Open("tba.db"), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to open SQLite DB at ./tba.db. Exiting...")
 	}
-	return sqliteRepoFactory{DB: db}
-}
-
-func (f sqliteRepoFactory) GetCharacterRepo() engine.CharacterRepo {
-	return newCharacterRepo(f.DB)
+	sqliteRepo := repo{db}
+	return &sqliteRepo
 }

@@ -20,7 +20,7 @@ func main() {
 	cross.InitConfig()
 	config := cross.GetConfig()
 
-	rf := repo.NewRepoFactory(config)
+	rf := repo.NewRepo(config)
 
 	e := engine.NewEngine(rf)
 

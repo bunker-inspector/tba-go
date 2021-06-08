@@ -5,13 +5,13 @@ import (
 )
 
 func (e *Engine) NewCharacter(c *domain.Character) {
-	e.GetCharacterRepo().Put(c)
+	e.repo.SaveCharacter(c)
 }
 
 func (e *Engine) DeleteCharacterByUserID(id int) {
-	e.GetCharacterRepo().DeleteByUserID(id)
+	e.repo.DeleteCharacterByUserID(id)
 }
 
 func (e *Engine) GetCharacterByUserID(id int) *domain.Character {
-	return e.GetCharacterRepo().GetByUserID(id)
+	return e.repo.GetCharacterByUserID(id)
 }

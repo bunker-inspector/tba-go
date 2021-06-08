@@ -7,7 +7,7 @@ import (
 )
 
 type Config struct {
-	storage string
+	repo string
 }
 
 var conf *Config
@@ -18,13 +18,13 @@ func InitConfig() {
 		log.Print("No .env file found.")
 	}
 
-	storage := os.Getenv("STORAGE_DRIVER")
-	if storage == "" {
-		storage = "sqlite"
+	repo := os.Getenv("REPO_DRIVER")
+	if repo == "" {
+		repo = "sqlite"
 	}
 
 	conf = &Config{
-		storage: storage,
+		repo: repo,
 	}
 }
 
@@ -32,6 +32,6 @@ func GetConfig() *Config {
 	return conf
 }
 
-func (c *Config) Storage() *string {
-	return &(c.storage)
+func (c *Config) Repo() *string {
+	return &c.repo
 }

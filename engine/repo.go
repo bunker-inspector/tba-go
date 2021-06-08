@@ -4,12 +4,8 @@ import (
 	"github.com/bunker-inspector/tba/domain"
 )
 
-type RepoFactory interface {
-	GetCharacterRepo() CharacterRepo
-}
-
-type CharacterRepo interface {
-	DeleteByUserID(int)
-	GetByUserID(int) *domain.Character
-	Put(*domain.Character)
+type Repo interface {
+	DeleteCharacterByUserID(int)
+	GetCharacterByUserID(int) *domain.Character
+	SaveCharacter(*domain.Character)
 }
