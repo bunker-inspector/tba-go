@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  tba:
+    build: .
+    environment:
+      TELEGRAM_BOT_TOKEN: $TELEGRAM_BOT_TOKEN
+    command: ["air"]
+    volumes:
+      - ./:/go/src

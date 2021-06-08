@@ -22,5 +22,5 @@ build: build_telegram
 migrate:
 	goose -dir db sqlite3 ./tba.db up
 
-run:
+run: migrate
 	go run $$(ls -1 cmd/$(PLATFORM)/*.go | grep -v _test.go)
