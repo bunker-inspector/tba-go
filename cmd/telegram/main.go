@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/bunker-inspector/tba/adapters/telegram"
-	"github.com/bunker-inspector/tba/cross"
+	"github.com/bunker-inspector/tba/config"
 	"github.com/bunker-inspector/tba/engine"
 	"github.com/bunker-inspector/tba/providers/repo"
 )
@@ -17,8 +17,8 @@ func main() {
 		log.Fatal("TELEGRAM_BOT_TOKEN not set.")
 	}
 
-	cross.InitConfig()
-	config := cross.GetConfig()
+	config.InitConfig()
+	config := config.GetConfig()
 
 	rf := repo.NewRepo(config)
 

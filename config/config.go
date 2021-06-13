@@ -1,4 +1,4 @@
-package cross
+package config
 
 import (
 	dotenv "github.com/joho/godotenv"
